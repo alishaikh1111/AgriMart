@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AgriMart - My Orders</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+    <div class="logo">
+        🌾 AgriMart
+    </div>
+
+
+    <nav class="navbar">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="index.html#products">
+            Products
+        </a>
+
+        <a href="wishlist.html">
+            ❤️ Wishlist
+        </a>
+
+        <a href="orders.html">
+            📦 Orders
+        </a>
+
+        <a href="profile.html">
+            👤 Profile
+        </a>
+
+    </nav>
+
+
+    <a href="cart.html" class="cart-button">
+
+        🛒 Cart
+
+        <span id="cart-count">
+            0
+        </span>
+
+    </a>
+
+</header>
+
+
+
+<main class="orders-page">
+
+    <h1>
+        📦 My Orders
+    </h1>
+
+    <p class="orders-subtitle">
+        Track your AgriMart purchases
+    </p>
+
+
+    <div id="orders-container">
+
+    </div>
+
+
+    <div
+        id="no-orders"
+        class="no-orders"
+    >
+
+        <div>
+            📦
+        </div>
+
+        <h2>
+            No Orders Yet
+        </h2>
+
+        <p>
+            You haven't placed any orders yet.
+        </p>
+
+        <a
+            href="index.html#products"
+            class="hero-button"
+        >
+            Start Shopping
+        </a>
+
+    </div>
+
+</main>
+
+
+
+<footer class="footer">
+
+    <h3>
+        🌾 AgriMart
+    </h3>
+
+    <p>
+        Empowering Farmers with Digital Agriculture
+    </p>
+
+    <p>
+        © 2026 AgriMart. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        displayOrders();
+
+    }
+);
+
+
+function displayOrders() {
+
+    const orders =
+        JSON.parse(
+            localStorage.getItem(
+                "agrimartOrders"
+            )
+        ) || [];
+
+
+    const container =
+        document.getElementById(
+            "orders-container"
+        );
+
+
+    const noOrders =
+        document.getElementById(
+            "no-orders"
+        );
+
+
+    if (orders.length === 0) {
+
+        container.innerHTML = "";
+
+        noOrders.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    noOrders.style.display =
+        "none";
+
+
+    container.innerHTML = "";
+
+
+    orders.reverse();
+
+
+    orders.forEach(
+        function(order) {
+
+            const card =
+                document.createElement("div");
+
+
+            card.className =
+                "order-card";
+
+
+            let productsHTML = "";
+
+
+            order.products.forEach(
+                function(product) {
+
+                    productsHTML += `
+
+                        <div class="order-product">
+
+                            <span>
+                                ${product.name}
+                                × ${product.quantity}
+                            </span>
+
+                            <strong>
+                                ₹${product.price * product.quantity}
+                            </strong>
+
+                        </div>
+
+                    `;
+
+                }
+            );
+
+
+            card.innerHTML = `
+
+                <div class="order-header">
+
+                    <div>
+
+                        <h3>
+                            Order #${order.orderId}
+                        </h3>
+
+                        <p>
+                            ${order.date}
+                        </p>
+
+                    </div>
+
+                    <span class="order-status">
+                        ${order.status}
+                    </span>
+
+                </div>
+
+
+                <div class="order-products">
+
+                    ${productsHTML}
+
+                </div>
+
+
+                <div class="order-footer">
+
+                    <span>
+                        Payment: ${order.payment}
+                    </span>
+
+                    <strong>
+                        Total: ₹${order.total}
+                    </strong>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(card);
+
+        }
+    );
+
+}
+
+</script>
+<script>
+
+</script>
+
+
+</body>
+
+</html>

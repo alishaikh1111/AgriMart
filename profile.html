@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AgriMart - Profile</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+    <div class="logo">
+        🌾 AgriMart
+    </div>
+
+
+    <nav class="navbar">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="index.html#products">
+            Products
+        </a>
+
+        <a href="wishlist.html">
+            ❤️ Wishlist
+        </a>
+
+        <a href="orders.html">
+            📦 Orders
+        </a>
+
+        <a href="profile.html">
+            👤 Profile
+        </a>
+
+    </nav>
+
+
+    <a href="cart.html" class="cart-button">
+
+        🛒 Cart
+
+        <span id="cart-count">
+            0
+        </span>
+
+    </a>
+
+</header>
+
+
+
+<main class="profile-page">
+
+
+    <div class="profile-card">
+
+
+        <div class="profile-avatar">
+            👤
+        </div>
+
+
+        <h1 id="profile-name">
+            Guest User
+        </h1>
+
+
+        <p id="profile-email">
+            Please login to see your profile.
+        </p>
+
+
+        <div class="profile-details">
+
+
+            <div class="profile-row">
+
+                <span>
+                    👤 Name
+                </span>
+
+                <strong id="profile-name-detail">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="profile-row">
+
+                <span>
+                    📧 Email
+                </span>
+
+                <strong id="profile-email-detail">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="profile-row">
+
+                <span>
+                    📱 Phone
+                </span>
+
+                <strong id="profile-phone-detail">
+                    -
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="profile-actions">
+
+            <a
+                href="orders.html"
+                class="profile-button"
+            >
+                📦 My Orders
+            </a>
+
+
+            <a
+                href="wishlist.html"
+                class="profile-button"
+            >
+                ❤️ Wishlist
+            </a>
+
+
+            <button
+                onclick="logoutUser()"
+                class="logout-button"
+            >
+                🚪 Logout
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+
+<footer class="footer">
+
+    <h3>
+        🌾 AgriMart
+    </h3>
+
+    <p>
+        Empowering Farmers with Digital Agriculture
+    </p>
+
+    <p>
+        © 2026 AgriMart. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadProfile();
+
+    }
+);
+
+
+function loadProfile() {
+
+    const user =
+        JSON.parse(
+            localStorage.getItem(
+                "agrimartLoggedInUser"
+            )
+        );
+
+
+    if (!user) {
+
+        document.getElementById(
+            "profile-name"
+        ).textContent =
+            "Guest User";
+
+
+        document.getElementById(
+            "profile-email"
+        ).textContent =
+            "Please login to see your profile.";
+
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "profile-name"
+    ).textContent =
+        user.name;
+
+
+    document.getElementById(
+        "profile-email"
+    ).textContent =
+        user.email;
+
+
+    document.getElementById(
+        "profile-name-detail"
+    ).textContent =
+        user.name;
+
+
+    document.getElementById(
+        "profile-email-detail"
+    ).textContent =
+        user.email;
+
+
+    document.getElementById(
+        "profile-phone-detail"
+    ).textContent =
+        user.phone;
+
+}
+
+</script>
+
+
+</body>
+
+</html>

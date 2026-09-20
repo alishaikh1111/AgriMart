@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AgriMart - Product Details</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+    <div class="logo">
+        🌾 AgriMart
+    </div>
+
+
+    <nav class="navbar">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="index.html#categories">
+            Categories
+        </a>
+
+        <a href="index.html#products">
+            Products
+        </a>
+
+        <a href="index.html#about">
+            About
+        </a>
+
+        <a href="index.html#contact">
+            Contact
+        </a>
+
+    </nav>
+
+
+    <a href="cart.html" class="cart-button">
+
+        🛒 Cart
+
+        <span id="cart-count">
+            0
+        </span>
+
+    </a>
+
+</header>
+
+
+
+<main class="product-details-page">
+
+
+    <a
+        href="index.html#products"
+        class="back-button"
+    >
+        ← Back to Products
+    </a>
+
+
+
+    <div class="product-details-container">
+
+
+        <div class="details-image" id="product-image">
+    <img id="product-image-real" src="" alt="Product Image">
+</div>
+
+
+
+        <div class="details-info">
+
+
+            <span
+                class="product-category"
+                id="product-category"
+            >
+                🌱 Seeds
+            </span>
+
+
+            <h1 id="product-name">
+                Premium Wheat Seeds
+            </h1>
+
+
+            <div
+                class="details-price"
+                id="product-price"
+            >
+                ₹499
+            </div>
+
+
+            <p
+                class="details-description"
+                id="product-description"
+            >
+                Premium quality wheat seeds for healthy
+                crops and better agricultural production.
+            </p>
+
+
+
+            <div class="product-features">
+
+                <h3>
+                    Product Features
+                </h3>
+
+                <ul id="product-features">
+
+                </ul>
+
+            </div>
+
+
+
+            <div class="details-quantity">
+
+                <span>
+                    Quantity:
+                </span>
+
+
+                <button onclick="decreaseQuantity()">
+                    −
+                </button>
+
+
+                <span id="productQuantity">
+                    1
+                </span>
+
+
+                <button onclick="increaseQuantity()">
+                    +
+                </button>
+
+            </div>
+
+
+
+            <div class="details-buttons">
+
+                <button
+                    class="details-add-button"
+                    onclick="addProductToCart()"
+                >
+                    🛒 Add to Cart
+                </button>
+
+
+                <button
+                    class="details-buy-button"
+                    onclick="buyProduct()"
+                >
+                    ⚡ Buy Now
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <section class="product-description-section">
+
+        <h2>
+            About This Product
+        </h2>
+
+
+        <p id="long-description">
+
+        </p>
+
+    </section>
+
+
+</main>
+
+
+
+<footer class="footer">
+
+    <h3>
+        🌾 AgriMart
+    </h3>
+
+    <p>
+        Empowering Farmers with Digital Agriculture
+    </p>
+
+    <p>
+        © 2026 AgriMart. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+
+// =====================================================
+// PRODUCT DATABASE
+// =====================================================
+const products = {};
+
+const xhr = new XMLHttpRequest();
+
+xhr.open("GET", "http://localhost:5000/api/products", false);
+xhr.send();
+
+if (xhr.status === 200) {
+    const dbProducts = JSON.parse(xhr.responseText);
+
+    const productSlugs = {
+        "Premium Wheat Seeds": "wheat",
+        "Hybrid Corn Seeds": "corn",
+        "Organic Fertilizer": "organic",
+        "NPK Fertilizer": "npk",
+        "Crop Protection Spray": "spray",
+        "Bio Pesticide": "bio",
+        "Mini Cultivator": "cultivator",
+        "Drip Irrigation Kit": "drip"
+    };
+
+    dbProducts.forEach(function(item) {
+        const slug = productSlugs[item.name];
+
+        if (slug) {
+            products[slug] = {
+                name: item.name,
+                price: item.price,
+                image: item.image,
+                category: item.category,
+                description: item.description,
+                features: [
+                    "Quality tested",
+                    "Farmer friendly",
+                    "Suitable for Indian farming"
+                ],
+                longDescription: item.description
+            };
+        }
+    });
+}
+
+async function loadProductImage() {
+    try {
+        const response = await fetch("http://localhost:5000/api/products");
+        const dbProducts = await response.json();
+
+        const dbProduct = dbProducts.find(
+            item => item.name === product.name
+        );
+
+        if (dbProduct && dbProduct.image) {
+            const imageBox = document.getElementById("product-image");
+
+            imageBox.innerHTML = `
+                <img 
+                    src="${dbProduct.image}" 
+                    alt="${dbProduct.name}"
+                    style="width:100%; height:100%; object-fit:contain;"
+                >
+            `;
+        }
+    } catch (error) {
+        console.error("Error loading product image:", error);
+    }
+}
+
+loadProductImage();
+
+
+// =====================================================
+// GET PRODUCT FROM URL
+// =====================================================
+
+const urlParams =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const productId =
+    urlParams.get("product") || "wheat";
+
+
+const product =
+    products[productId] || products.wheat;
+
+
+
+// =====================================================
+// DISPLAY PRODUCT
+// =====================================================
+
+document.title =
+    "AgriMart - " + product.name;
+
+
+const imageElement = document.getElementById("product-image-real");
+
+imageElement.src =
+    "http://localhost:5000/api/products/image/" +
+    encodeURIComponent(product.name);
+
+imageElement.alt = product.name;
+
+document.getElementById(
+    "product-category"
+).textContent =
+    product.category;
+
+
+document.getElementById(
+    "product-name"
+).textContent =
+    product.name;
+
+
+document.getElementById(
+    "product-price"
+).textContent =
+    "₹" + product.price;
+
+
+document.getElementById(
+    "product-description"
+).textContent =
+    product.description;
+
+
+document.getElementById(
+    "long-description"
+).textContent =
+    product.longDescription;
+
+
+
+// =====================================================
+// FEATURES
+// =====================================================
+
+const featureList =
+    document.getElementById(
+        "product-features"
+    );
+
+
+product.features.forEach(
+    function(feature) {
+
+        const li =
+            document.createElement("li");
+
+        li.textContent =
+            "✅ " + feature;
+
+        featureList.appendChild(li);
+
+    }
+);
+
+
+
+// =====================================================
+// QUANTITY
+// =====================================================
+
+let quantity = 1;
+
+
+function increaseQuantity() {
+
+    quantity++;
+
+    document.getElementById(
+        "productQuantity"
+    ).textContent = quantity;
+
+}
+
+
+function decreaseQuantity() {
+
+    if (quantity > 1) {
+
+        quantity--;
+
+    }
+
+    document.getElementById(
+        "productQuantity"
+    ).textContent = quantity;
+
+}
+
+
+
+// =====================================================
+// ADD TO CART
+// =====================================================
+
+function addProductToCart() {
+
+    let cart =
+        JSON.parse(
+            localStorage.getItem(
+                "agrimartCart"
+            )
+        ) || [];
+
+
+    const existingProduct =
+        cart.find(
+            function(item) {
+
+                return item.name === product.name;
+
+            }
+        );
+
+
+    if (existingProduct) {
+
+        existingProduct.quantity =
+            Number(existingProduct.quantity)
+            + quantity;
+
+    }
+
+    else {
+
+        cart.push({
+
+            name: product.name,
+
+            price: product.price,
+
+            quantity: quantity
+
+        });
+
+    }
+
+
+    localStorage.setItem(
+        "agrimartCart",
+        JSON.stringify(cart)
+    );
+
+
+    window.location.href =
+        "cart.html";
+
+}
+
+
+
+// =====================================================
+// BUY NOW
+// =====================================================
+
+function buyProduct() {
+
+    addProductToCart();
+
+}
+
+</script>
+
+
+</body>
+
+</html>

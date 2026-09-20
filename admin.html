@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AgriMart - Admin Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="logo">
+        🌾 AgriMart Admin
+    </div>
+
+
+    <nav class="navbar">
+
+        <a href="index.html">
+            🏠 Home
+        </a>
+
+        <a href="index.html#products">
+            🛍️ Products
+        </a>
+
+        <a href="orders.html">
+            📦 Orders
+        </a>
+
+    </nav>
+
+
+    <a href="index.html" class="cart-button">
+        ← Store
+    </a>
+
+</header>
+
+
+
+<!-- ================= ADMIN PAGE ================= -->
+
+<main class="admin-page">
+
+
+    <div class="admin-heading">
+
+        <div>
+
+            <h1>
+                🛠️ Admin Dashboard
+            </h1>
+
+            <p>
+                Manage your AgriMart store
+            </p>
+
+        </div>
+
+        <span class="admin-badge">
+            ADMIN
+        </span>
+
+    </div>
+
+
+
+    <!-- ================= STATISTICS ================= -->
+
+    <section class="admin-stats">
+
+
+        <div class="admin-stat-card">
+
+            <div class="admin-stat-icon">
+                📦
+            </div>
+
+            <div>
+
+                <h3 id="admin-orders">
+                    0
+                </h3>
+
+                <p>
+                    Total Orders
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="admin-stat-card">
+
+            <div class="admin-stat-icon">
+                👥
+            </div>
+
+            <div>
+
+                <h3 id="admin-users">
+                    0
+                </h3>
+
+                <p>
+                    Registered Users
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="admin-stat-card">
+
+            <div class="admin-stat-icon">
+                🛍️
+            </div>
+
+            <div>
+
+                <h3 id="admin-products">
+                    8
+                </h3>
+
+                <p>
+                    Products
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="admin-stat-card">
+
+            <div class="admin-stat-icon">
+                💰
+            </div>
+
+            <div>
+
+                <h3 id="admin-revenue">
+                    ₹0
+                </h3>
+
+                <p>
+                    Total Revenue
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ================= PRODUCTS ================= -->
+
+    <section class="admin-section">
+
+        <div class="admin-section-heading">
+
+            <h2>
+                🛍️ Product Management
+            </h2>
+
+            <span>
+                8 Products Available
+            </span>
+
+        </div>
+
+
+        <div class="admin-products-grid">
+
+
+            <div class="admin-product">
+
+                <span class="admin-product-icon">
+                    🌾
+                </span>
+
+                <div>
+
+                    <h3>
+                        Premium Wheat Seeds
+                    </h3>
+
+                    <p>
+                        Seeds
+                    </p>
+
+                </div>
+
+                <strong>
+                    ₹499
+                </strong>
+
+            </div>
+
+
+
+            <div class="admin-product">
+
+                <span class="admin-product-icon">
+                    🌽
+                </span>
+
+                <div>
+
+                    <h3>
+                        Hybrid Corn Seeds
+                    </h3>
+
+                    <p>
+                        Seeds
+                    </p>
+
+                </div>
+
+                <strong>
+                    ₹599
+                </strong>
+
+            </div>
+
+
+
+            <div class="admin-product">
+
+                <span class="admin-product-icon">
+                    🌱
+                </span>
+
+                <div>
+
+                    <h3>
+                        Organic Fertilizer
+                    </h3>
+
+                    <p>
+                        Fertilizers
+                    </p>
+
+                </div>
+
+                <strong>
+                    ₹749
+                </strong>
+
+            </div>
+
+
+
+            <div class="admin-product">
+
+                <span class="admin-product-icon">
+                    🧪
+                </span>
+
+                <div>
+
+                    <h3>
+                        NPK Fertilizer
+                    </h3>
+
+                    <p>
+                        Fertilizers
+                    </p>
+
+                </div>
+
+                <strong>
+                    ₹899
+                </strong>
+
+            </div>
+
+
+
+            <div class="admin-product">
+
+                <span class="admin-product-icon">
+                    🛡️
+                </span>
+
+                <div>
+
+                    <h3>
+                        Crop Protection Spray
+                    </h3>
+
+                    <p>
+                        Crop Protection
+                    </p>
+
+                </div>
+
+                <strong>
+                    ₹649
+                </strong>
+
+            </div>
+
+
+
+            <div class="admin-product">
+
+                <span class="admin-product-icon">
+                    🌿
+                </span>
+
+                <div>
+
+                    <h3>
+                        Bio Pesticide
+                    </h3>
+
+                    <p>
+                        Crop Protection
+                    </p>
+
+                </div>
+
+                <strong>
+                    ₹549
+                </strong>
+
+            </div>
+
+
+
+            <div class="admin-product">
+
+                <span class="admin-product-icon">
+                    🚜
+                </span>
+
+                <div>
+
+                    <h3>
+                        Mini Cultivator
+                    </h3>
+
+                    <p>
+                        Farm Equipment
+                    </p>
+
+                </div>
+
+                <strong>
+                    ₹4,999
+                </strong>
+
+            </div>
+
+
+
+            <div class="admin-product">
+
+                <span class="admin-product-icon">
+                    💧
+                </span>
+
+                <div>
+
+                    <h3>
+                        Drip Irrigation Kit
+                    </h3>
+
+                    <p>
+                        Irrigation
+                    </p>
+
+                </div>
+
+                <strong>
+                    ₹2,499
+                </strong>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= ORDERS ================= -->
+
+    <section class="admin-section">
+
+        <div class="admin-section-heading">
+
+            <h2>
+                📦 Recent Orders
+            </h2>
+
+            <a href="orders.html">
+                View Orders →
+            </a>
+
+        </div>
+
+
+        <div id="admin-orders-container">
+
+        </div>
+
+
+        <div
+            id="admin-no-orders"
+            class="admin-no-data"
+        >
+
+            <div>
+                📦
+            </div>
+
+            <h3>
+                No Orders Yet
+            </h3>
+
+            <p>
+                Orders placed by customers will appear here.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= USERS ================= -->
+
+    <section class="admin-section">
+
+        <div class="admin-section-heading">
+
+            <h2>
+                👥 Registered Users
+            </h2>
+
+        </div>
+
+
+        <div id="admin-users-container">
+
+        </div>
+
+
+        <div
+            id="admin-no-users"
+            class="admin-no-data"
+        >
+
+            <div>
+                👥
+            </div>
+
+            <h3>
+                No Users Yet
+            </h3>
+
+            <p>
+                Registered customers will appear here.
+            </p>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <h3>
+        🌾 AgriMart
+    </h3>
+
+    <p>
+        Admin Dashboard
+    </p>
+
+    <p>
+        © 2026 AgriMart. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="script.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    loadAdminDashboard();
+});
+
+async function loadAdminDashboard() {
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:5000/api/admin/stats"
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            alert(data.error || "Failed to load admin data");
+            return;
+        }
+
+        // Statistics
+        document.getElementById("admin-orders").textContent =
+            data.orders;
+
+        document.getElementById("admin-users").textContent =
+            data.users;
+
+        document.getElementById("admin-products").textContent =
+            data.products;
+
+        document.getElementById("admin-revenue").textContent =
+            "₹" + data.revenue;
+
+        // Load orders
+        loadAdminOrders();
+
+        // Load users
+        loadAdminUsers();
+
+    } catch (error) {
+
+        console.error(error);
+        alert("Server connection failed!");
+
+    }
+}
+
+
+async function loadAdminOrders() {
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:5000/api/orders"
+        );
+
+        if (!response.ok) return;
+
+        const orders = await response.json();
+
+        const container =
+            document.getElementById("admin-orders-container");
+
+        const empty =
+            document.getElementById("admin-no-orders");
+
+        container.innerHTML = "";
+
+        if (!orders.length) {
+            empty.style.display = "block";
+            return;
+        }
+
+        empty.style.display = "none";
+
+        orders.slice(-5).reverse().forEach(order => {
+
+            const card = document.createElement("div");
+
+            card.className = "admin-order";
+
+            card.innerHTML = `
+                <div>
+                    <h3>Order #${order.id}</h3>
+                    <p>Order from database</p>
+                </div>
+
+                <span>Order Placed</span>
+
+                <strong>₹${order.total_amount}</strong>
+            `;
+
+            container.appendChild(card);
+
+        });
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+async function loadAdminUsers() {
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:5000/api/users"
+        );
+
+        if (!response.ok) return;
+
+        const users = await response.json();
+
+        const container =
+            document.getElementById("admin-users-container");
+
+        const empty =
+            document.getElementById("admin-no-users");
+
+        container.innerHTML = "";
+
+        if (!users.length) {
+            empty.style.display = "block";
+            return;
+        }
+
+        empty.style.display = "none";
+
+        users.forEach(user => {
+
+            const card = document.createElement("div");
+
+            card.className = "admin-user";
+
+            card.innerHTML = `
+                <div class="admin-user-icon">👤</div>
+
+                <div>
+                    <h3>${user.name}</h3>
+                    <p>${user.email}</p>
+                </div>
+
+                <span>${user.phone || ""}</span>
+            `;
+
+            container.appendChild(card);
+
+        });
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+</script>
+
+</body>
+
+</html>

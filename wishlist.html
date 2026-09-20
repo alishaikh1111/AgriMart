@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriMart - Wishlist</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">🌾 AgriMart</div>
+
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="index.html#categories">Categories</a>
+        <a href="index.html#products">Products</a>
+        <a href="wishlist.html">❤️ Wishlist</a>
+        <a href="index.html#about">About</a>
+    </nav>
+
+    <a href="cart.html" class="cart-button">
+        🛒 Cart
+        <span id="cart-count">0</span>
+    </a>
+
+</header>
+
+
+<main class="wishlist-page">
+
+    <h1>❤️ My Wishlist</h1>
+
+    <p class="wishlist-subtitle">
+        Products you want to buy later
+    </p>
+
+    <div id="wishlist-container"></div>
+
+    <div id="empty-wishlist" class="empty-wishlist">
+
+        <div class="empty-wishlist-icon">❤️</div>
+
+        <h2>Your Wishlist is Empty</h2>
+
+        <p>
+            Add your favourite agricultural products here.
+        </p>
+
+        <a href="index.html#products" class="hero-button">
+            Explore Products
+        </a>
+
+    </div>
+
+</main>
+
+
+<footer class="footer">
+
+    <h3>🌾 AgriMart</h3>
+
+    <p>Empowering Farmers with Digital Agriculture</p>
+
+    <p>© 2026 AgriMart. All Rights Reserved.</p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+<script>
+function loadWishlist() {
+    const wishlist = JSON.parse(localStorage.getItem("agrimartWishlist")) || [];
+
+    const container = document.getElementById("wishlist-container");
+    const empty = document.getElementById("empty-wishlist");
+
+    container.innerHTML = "";
+
+    if (wishlist.length === 0) {
+        empty.style.display = "block";
+        return;
+    }
+
+    empty.style.display = "none";
+
+    wishlist.forEach((product, index) => {
+
+        const card = document.createElement("div");
+
+        card.className = "product-card";
+
+        card.innerHTML = `
+            <img src="${product.image}" 
+                 class="product-image-real"
+                 alt="${product.name}">
+
+            <div class="product-info">
+                <h3>${product.name}</h3>
+
+                <p class="price">₹${product.price}</p>
+
+                <div class="product-bottom">
+
+                    <button class="add-cart"
+                        onclick="removeFromWishlist(${index})">
+                        ❌ Remove
+                    </button>
+
+                    <a href="product-details.html?product=${product.slug}">
+                        View Details
+                    </a>
+
+                </div>
+            </div>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+
+function removeFromWishlist(index) {
+
+    let wishlist =
+        JSON.parse(localStorage.getItem("agrimartWishlist")) || [];
+
+    wishlist.splice(index, 1);
+
+    localStorage.setItem(
+        "agrimartWishlist",
+        JSON.stringify(wishlist)
+    );
+
+    loadWishlist();
+}
+
+
+loadWishlist();
+</script>
+</body>
+</html>
