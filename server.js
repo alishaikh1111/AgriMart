@@ -32,6 +32,57 @@ const db = new sqlite3.Database(
         }
     }
 );
+// ================= CREATE PRODUCTS TABLE =================
+db.run(`
+    CREATE TABLE IF NOT EXISTS products (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        description TEXT,
+        price REAL NOT NULL,
+        image TEXT
+    )
+`, (err) => {
+    if (err) {
+        console.error("Products table creation failed:", err.message);
+    } else {
+        console.log("Products table ready!");
+
+        // Add default products only if table is empty
+        db.get("SELECT COUNT(*) AS count FROM products", (err, row) => {
+            if (err) {
+                console.error("Product count error:", err.message);
+                return;
+            }
+
+            if (row.count === 0) {
+                const products = [
+                    ["Premium Wheat Seeds", "High quality wheat seeds", 499, "wheat.jpg"],
+                    ["Hybrid Corn Seeds", "High quality hybrid corn seeds", 599, "corn.jpg"],
+                    ["Organic Fertilizer", "100% organic fertilizer", 749, "organic.jpg"],
+                    ["NPK Fertilizer", "Balanced NPK fertilizer", 899, "npk.jpg"],
+                    ["Crop Protection Spray", "Effective crop protection spray", 649, "spray.jpg"],
+                    ["Bio Pesticide", "Natural bio pesticide", 549, "bio.jpg"],
+                    ["Mini Cultivator", "Compact farming cultivator", 4999, "cultivator.jpg"],
+                    ["Drip Irrigation Kit", "Efficient drip irrigation kit", 2499, "drip.jpg"]
+                ];
+
+                const stmt = db.prepare(`
+                    INSERT INTO products
+                    (name, description, price, image)
+                    VALUES (?, ?, ?, ?)
+                `);
+
+                products.forEach(product => {
+                    stmt.run(product);
+                });
+
+                stmt.finalize(() => {
+                    console.log("Default products inserted!");
+                });
+            }
+        });
+    }
+});
 // Test API
 app.get("/api/test", (req, res) => {
     res.json({
