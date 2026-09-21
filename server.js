@@ -55,16 +55,16 @@ db.run(`
             }
 
             if (row.count === 0) {
-                const products = [
-                    ["Premium Wheat Seeds", "High quality wheat seeds", 499, "wheat.jpg"],
-                    ["Hybrid Corn Seeds", "High quality hybrid corn seeds", 599, "corn.jpg"],
-                    ["Organic Fertilizer", "100% organic fertilizer", 749, "organic.jpg"],
-                    ["NPK Fertilizer", "Balanced NPK fertilizer", 899, "npk.jpg"],
-                    ["Crop Protection Spray", "Effective crop protection spray", 649, "spray.jpg"],
-                    ["Bio Pesticide", "Natural bio pesticide", 549, "bio.jpg"],
-                    ["Mini Cultivator", "Compact farming cultivator", 4999, "cultivator.jpg"],
-                    ["Drip Irrigation Kit", "Efficient drip irrigation kit", 2499, "drip.jpg"]
-                ];
+               const products = [
+    ["Premium Wheat Seeds", "High quality wheat seeds", 499, "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80"],
+    ["Hybrid Corn Seeds", "High quality hybrid corn seeds", 599, "https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=600&q=80"],
+    ["Organic Fertilizer", "100% organic fertilizer", 749, "https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=600&q=80"],
+    ["NPK Fertilizer", "Balanced NPK fertilizer", 899, "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=600&q=80"],
+    ["Crop Protection Spray", "Effective crop protection spray", 649, "https://images.unsplash.com/photo-1492496913980-501348b61469?auto=format&fit=crop&w=600&q=80"],
+    ["Bio Pesticide", "Natural bio pesticide", 549, "https://images.unsplash.com/photo-1586771107445-d3ca888129ff?auto=format&fit=crop&w=600&q=80"],
+    ["Mini Cultivator", "Compact farming cultivator", 4999, "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=600&q=80"],
+    ["Drip Irrigation Kit", "Efficient drip irrigation kit", 2499, "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=600&q=80"]
+];
 
                 const stmt = db.prepare(`
                     INSERT INTO products
