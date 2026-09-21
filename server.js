@@ -65,7 +65,22 @@ db.run(`
     ["Mini Cultivator", "Compact farming cultivator", 4999, "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=600&q=80"],
     ["Drip Irrigation Kit", "Efficient drip irrigation kit", 2499, "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=600&q=80"]
 ];
-
+// ================= CREATE USERS TABLE =================
+db.run(`
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        email TEXT UNIQUE NOT NULL,
+        phone TEXT,
+        password TEXT NOT NULL
+    )
+`, (err) => {
+    if (err) {
+        console.error("Users table creation failed:", err.message);
+    } else {
+        console.log("Users table ready!");
+    }
+});
                 const stmt = db.prepare(`
                     INSERT INTO products
                     (name, description, price, image)
